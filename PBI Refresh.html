@@ -1,0 +1,59 @@
+<!-- 
+	This HTML-Page loads a dedicated PowerBi Dashboard and refreshes it by given interval
+	The refresh interval can be set with setInterval() in seconds x milliseconds 
+	
+	Example: for every 10 minutes set this to 600 x 1000
+			setInterval(iSequencer,600 * 1000);
+			
+	You can either refresh a single page or loop thru different dashboards or pages of a dashboard.
+	sites takes a list of webpages.
+	Paste here the embed link from the PowerBi Service.
+	
+	Example: sites = ['https://google.com', 'https://ebay.com']
+	
+	If the script should loop thru the pages of a dashboard, open each page in the service and copy the embed Url from each page.
+	You can also copy just the apendix "&pageName=ReportSectionxxxxxxxxxxxxxxxxxxxx" and append it to the Url. 
+	
+	For a full documentation please refere to: https://powerbi.microsoft.com/en-us/blog/easily-embed-secure-power-bi-reports-in-your-internal-portals-or-websites/
+-->
+
+<html>
+	<body>
+
+		<style>
+		 body { 
+			overflow: hidden; 
+		}
+		 
+		 #sequencing {
+		   width:100%;
+		   height:100%;
+		 }
+		 
+
+		</style>
+
+		<iframe id='sequencing' src='' ></iframe>
+
+		<script>
+
+			var sites=['https://app.powerbi.com/reportEmbed?reportId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&groupId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&autoAuth=true&ctid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&config=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&pageName=ReportSectionxxxxxxxxxxxxxxxxxxxx', 
+
+			'https://app.powerbi.com/reportEmbed?reportId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&groupId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&autoAuth=true&ctid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&config=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&pageName=ReportSectionxxxxxxxxxxxxxxxxxxxx', 
+
+			'https://app.powerbi.com/reportEmbed?reportId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&groupId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&autoAuth=true&ctid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&config=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&pageName=ReportSectionxxxxxxxxxxxxxxxxxxxx'];
+
+			site=0;
+			document.getElementById('sequencing').src=sites[0];
+			 function iSequencer(){
+			   site++;
+			   if (site>=sites.length){site=0};
+			   document.getElementById('sequencing').src=sites[site];
+			 }
+
+			setInterval(iSequencer,15 * 1000);
+
+		</script>
+
+	</body>
+</html>
